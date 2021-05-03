@@ -36,20 +36,21 @@ class Type(FormEnum):
 
 # User model
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id       = db.Column(db.Integer,     primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)    # MUST be entered. MUST be unique
     password = db.Column(db.String(200), nullable=False)                 # MUST be entered
-    age = db.Column(db.Integer, nullable=False)
+    age      = db.Column(db.Integer,     nullable=False)
 
     pokemon_id = db.relationship('Pokemon', back_populates='id')         # a User can have many Pokemon
 
 # pokemon model
 class Pokemon(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    weight = db.Column(db.Float(precision=2), nullable=False)
+    id           = db.Column(db.Integer, primary_key=True)
+    name         = db.Column(db.String(100), nullable=False)
+    nick_name    = db.Column(db.String(100))
+    weight       = db.Column(db.Float(precision=2), nullable=False)
     pokemon_type = db.Column(db.Enum(Type), default=Type.NORMAL)
-    photo_url = db.Column(URLType)
+    photo_url    = db.Column(URLType)
 
     move_id = db.relationship('Move', back_populates='id')              # a Pokemon can have many Moves
 
