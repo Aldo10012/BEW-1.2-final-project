@@ -46,7 +46,7 @@ def new_pokemon():
             pokemon_type=form/pokemon_type.data
             photo_url=form.photo_url.data
         )
-        # new_pokemon.created_by = current_user   # adding flask_login.current_user as creator
+        new_pokemon.created_by = current_user   # adding flask_login.current_user as creator
         db.session.add(new_pokemon)
         db.session.commit()
         
@@ -66,7 +66,7 @@ def new_move():
             move_type=form.move_type.data
             power=form.power.data
         )
-        # new_move.created_by = current_user   # adding flask_login.current_user as creator
+        new_move.created_by = current_user   # adding flask_login.current_user as creator
         db.session.add(new_move)
         db.session.commit()
         

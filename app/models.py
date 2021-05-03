@@ -35,7 +35,7 @@ class Type(FormEnum):
     FAIRY = 'Fairy'
 
 # User model
-class User(db.Model):
+class User(UserMixin, db.Model):
     id       = db.Column(db.Integer,     primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)    # MUST be entered. MUST be unique
     password = db.Column(db.String(200), nullable=False)                 # MUST be entered
@@ -44,7 +44,7 @@ class User(db.Model):
     pokemon_id = db.relationship('Pokemon', back_populates='id')         # a User can have many Pokemon
 
 # pokemon model
-class Pokemon(db.Model):
+class Pokemon(UserMixin, db.Model):
     id           = db.Column(db.Integer, primary_key=True)
     name         = db.Column(db.String(100), nullable=False)
     nick_name    = db.Column(db.String(100))
@@ -55,7 +55,7 @@ class Pokemon(db.Model):
     move_id = db.relationship('Move', back_populates='id')              # a Pokemon can have many Moves
 
 # move model
-class Move(db.Model):
+class Move(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     move_type = db.Column(db.Enum(Type), default=Type.NORMAL)
