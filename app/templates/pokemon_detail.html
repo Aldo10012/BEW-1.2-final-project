@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<p><em>Let's have a loog at {{pokemon.nick_name}}!</em></p>
+
+<h2>Details:</h2>
+
+<p><img src="{{ pokemon.photo_url }}" width="250px" height="250px"></p>
+<p>name: {{pokemon.name}}</p>
+<p>nick_name: {{pokemon.nick_name}}</p>
+<p>weight: {{pokemon.weight}}</p>
+<p>type: {{pokemon.type}}</p>
+
+<p>moves:</p>
+<ul>
+{% for move in pokemon.moves %}
+    <li>{{move.name}}</li>
+    <ul>
+        <li>Type: {{move.move_type}}</li>
+        <li>Power: {{move.power}}</li>
+    </ul>
+{% endfor %}
+</ul>
+
+
+<h2>Add Move</h2>
+
+<form method="POST" action="{{ url_for('main.new_move') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Add Move</legend>
+    
+        {{ form.name.label }}
+        {{ form.name }}
+            
+        {{ form.move_type.label }}
+        {{ form.move_type }}
+
+        {{ form.power.label }}
+        {{ form.power }}
+                
+        {{ form.submit }}
+    </fieldset>
+</form> 
+
+
+{% endblock %}

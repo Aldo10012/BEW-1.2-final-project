@@ -41,7 +41,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), nullable=False)                 # MUST be entered
     age      = db.Column(db.Integer,     nullable=False)
 
-    pokemon_id = db.relationship('Pokemon', back_populates='id')         # a User can have many Pokemon
+    pokemons = db.relationship('Pokemon', back_populates='id')         # a User can have many Pokemon
 
 # pokemon model
 class Pokemon(UserMixin, db.Model):
@@ -52,7 +52,7 @@ class Pokemon(UserMixin, db.Model):
     pokemon_type = db.Column(db.Enum(Type), default=Type.NORMAL)
     photo_url    = db.Column(URLType)
 
-    move_id = db.relationship('Move', back_populates='id')              # a Pokemon can have many Moves
+    moves = db.relationship('Move', back_populates='id')              # a Pokemon can have many Moves
 
 # move model
 class Move(UserMixin, db.Model):

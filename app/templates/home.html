@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Your Pokedex</h1>
+
+<p><em>The one place you need to view all yoru pokemon data!</em></p>
+
+<h2>All Pokemon</h2>
+
+{% for pokemon in all_pokemon %}
+<div class="pokemon-card">
+    
+    {{ pokemon.photo_url}}
+
+    {{ pokemon.name }}
+
+    <a href="/detail/{{ pokemon.id }}">See details</a> 
+    
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -9,21 +9,21 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def homepage():
-    all_users = User.query.all()
-    return render_template('home.html', all_users=all_users)
+    all_pokemon = Pokemon.query.all()
+    return render_template('home.html', all_pokemon=all_pokemon)
 
 
 @main.route('/pokemon/<pokemon_id>', methods=['GET', 'POST'])
 def pokemon_detail(pokemon_id):
     pokemon = Pokemon.query.get(pokemon_id)
-    form = PokemonForm(obj=pokemon)
+    form = MoveForm()
 
     if form.validate_on_submit():
-        pokemon.title = form.title.data
-        pokemon.publish_date = form.publish_date.data
-        pokemon.author = form.author.data
-        pokemon.audience = form.audience.data
-        pokemon.genres = form.genres.data
+        pokemon.moves.append(Move(
+            name=form.name.data
+            move_type=form.move_type.data
+            power=form.power.data
+        ))
 
         db.session.add(pokemon)
         db.session.commit()
@@ -56,21 +56,21 @@ def new_pokemon():
     return render_template('new_pokemon.html', form=form)
 
 
-@main.route('/new_move', methods=['GET', 'POST'])
-@login_required
-def new_move():
-    form = MoveForm()
-    if form.validate_on_submit():
-        new_move = MoveForm(
-            name=form.name.data
-            move_type=form.move_type.data
-            power=form.power.data
-        )
-        new_move.created_by = current_user   # adding flask_login.current_user as creator
-        db.session.add(new_move)
-        db.session.commit()
+# @main.route('/new_move', methods=['GET', 'POST'])
+# @login_required
+# def new_move():
+#     form = MoveForm()
+#     if form.validate_on_submit():
+#         new_move = MoveForm(
+#             name=form.name.data
+#             move_type=form.move_type.data
+#             power=form.power.data
+#         )
+#         new_move.created_by = current_user   # adding flask_login.current_user as creator
+#         db.session.add(new_move)
+#         db.session.commit()
         
-        flash('success')
-        return redirect(url_for('main.move_detail', move_id = new_move.id)) 
+#         flash('success')
+#         return redirect(url_for('main.pokemon_detail', move_id = new_move.id)) 
 
-    return render_template('new_move.html', form=form)
+#     return render_template('pokemon_detail.html', form=form)
