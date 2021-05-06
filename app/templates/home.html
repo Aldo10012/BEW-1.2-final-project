@@ -10,11 +10,12 @@
 {% for pokemon in all_pokemon %}
 <div class="pokemon-card">
     
-    {{ pokemon.photo_url}}
+    <!-- {{ pokemon.photo_url}} -->
+    <p><img src="{{ pokemon.photo_url }}" width="250px" height="250px"></p>
 
     {{ pokemon.name }}
 
-    <a href="/detail/{{ pokemon.id }}">See details</a> 
+    <a href="/pokemon/{{ pokemon.id }}">See details</a> 
     
 </div>
 {% endfor %}

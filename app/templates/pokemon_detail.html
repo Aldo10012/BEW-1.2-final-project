@@ -26,7 +26,7 @@
 
 <h2>Add Move</h2>
 
-<form method="POST" action="{{ url_for('main.new_move') }}">
+<form method="POST" action="{{ url_for('main.pokemon_detail', pokemon_id=pokemon.id) }}">
     {{ form.csrf_token }}
     <fieldset>
         <legend>Add Move</legend>

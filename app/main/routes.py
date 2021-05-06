@@ -9,8 +9,13 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def homepage():
-    all_pokemon = Pokemon.query.all()
-    return render_template('home.html', all_pokemon=all_pokemon)
+    if current_user.is_authenticated:
+        pokemons = current_user.pokemons                            # only get the pokemon of the logged in user
+        return render_template('home.html', all_pokemon=pokemons)
+    return render_template('home.html', all_pokemon=[])
+    
+    # all_pokemon = Pokemon.query.all()
+    # return render_template('home.html', all_pokemon=all_pokemon)
 
 
 @main.route('/pokemon/<pokemon_id>', methods=['GET', 'POST'])
@@ -20,8 +25,8 @@ def pokemon_detail(pokemon_id):
 
     if form.validate_on_submit():
         pokemon.moves.append(Move(
-            name=form.name.data
-            move_type=form.move_type.data
+            name=form.name.data,
+            move_type=form.move_type.data,
             power=form.power.data
         ))
 
@@ -40,13 +45,13 @@ def new_pokemon():
     form = PokemonForm()
     if form.validate_on_submit():
         new_pokemon = Pokemon(
-            name=form.name.data
-            nick_name=form.nick_name.data
-            weight=form.weight.data
-            pokemon_type=form/pokemon_type.data
+            name=form.name.data,
+            nick_name=form.nick_name.data,
+            weight=form.weight.data,
+            pokemon_type=form.pokemon_type.data,
             photo_url=form.photo_url.data
         )
-        new_pokemon.created_by = current_user   # adding flask_login.current_user as creator
+        new_pokemon.user = current_user   # adding flask_login.current_user as creator
         db.session.add(new_pokemon)
         db.session.commit()
         

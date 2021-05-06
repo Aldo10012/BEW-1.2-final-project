@@ -11,10 +11,12 @@ auth = Blueprint('auth', __name__)
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
+        print("successful")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(
             username=form.username.data,
-            password=hashed_password
+            password=hashed_password,
+            age=form.age.data
         )
         db.session.add(user)
         db.session.commit()
