@@ -34,7 +34,7 @@ def pokemon_detail(pokemon_id):
         db.session.commit()
 
         flash('New Pokemon was creates successfuly')
-        return redirect(url_for('main.pokemon_detail', pokemon_id=pokemon.id), form=form)
+        return redirect(url_for('main.pokemon_detail', pokemon_id=pokemon.id, form=form))
 
     return render_template('pokemon_detail.html', pokemon=pokemon, form=form)
 
