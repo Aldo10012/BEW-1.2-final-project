@@ -41,7 +41,6 @@ class User(UserMixin, db.Model):
     age      = db.Column(db.Integer,     nullable=False)
 
     # add relationship with Pokemon
-    # pokemon_id = db.Column(db.Integer, db.ForeignKey('pokemon.id'))
     pokemons = db.relationship('Pokemon',  back_populates='user')     # a User can have many Pokemon
 
 
@@ -58,7 +57,6 @@ class Pokemon(UserMixin, db.Model):
     user      = db.relationship('User',  back_populates='pokemons')
     
     # add relationship with Moves
-    # move_id = db.Column(db.Integer, db.ForeignKey('move.id'))
     moves = db.relationship('Move',  back_populates='pokemon')             # a Pokemon can have many Moves
 
 
@@ -74,12 +72,3 @@ class Move(UserMixin, db.Model):
 
 
 
-# move_list_table = db.Table('move_list',
-#     db.Column('pokemon_id', db.Integer, db.ForeignKey('pokemon.id')),
-#     db.Column('move_id', db.Integer, db.ForeignKey('move.id'))
-# )
-
-# pokemon_list_table = db.Table('pokemon_list',
-#     db.Column('pokemon_id', db.Integer, db.ForeignKey('pokemon.id')),
-#     db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
-# )

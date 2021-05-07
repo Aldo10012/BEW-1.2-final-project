@@ -56,6 +56,7 @@ li.error {
     /* background-color: pink; */
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap
 }
 
 .pokemon-card {
@@ -66,7 +67,6 @@ li.error {
     padding: 0px 0px 12px 0px; 
     text-align: center;
     justify-content: flex-start;
-    
 }
 
 .pokemon-card img {
@@ -79,4 +79,16 @@ li.error {
 .pokemon-card h3 {
     color: #575757;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: x-large;
+}
+
+li {
+    margin: 0px 0px 10px 0px;
+}
+
+span {
+    padding: 5px; 
+    border-radius: 7.5px;
+    background-color: #fc3; 
 }

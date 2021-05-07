@@ -22,6 +22,11 @@ def homepage():
 def pokemon_detail(pokemon_id):
     pokemon = Pokemon.query.get(pokemon_id)
     form = MoveForm()
+    # print("\n\nhello")
+    # print(Type.ELECTRIC)
+    # print(type(Type.ELECTRIC))
+    # print(pokemon.moves[0].move_type)
+    # print(type(pokemon.moves[0].move_type))
 
     if form.validate_on_submit():
         pokemon.moves.append(Move(
@@ -34,9 +39,9 @@ def pokemon_detail(pokemon_id):
         db.session.commit()
 
         flash('New Pokemon was creates successfuly')
-        return redirect(url_for('main.pokemon_detail', pokemon_id=pokemon.id, form=form))
+        return redirect(url_for('main.pokemon_detail', pokemon_id=pokemon.id, form=form, Type=Type))
 
-    return render_template('pokemon_detail.html', pokemon=pokemon, form=form)
+    return render_template('pokemon_detail.html', pokemon=pokemon, form=form, Type=Type)
 
 
 @main.route('/new_pokemon', methods=['GET', 'POST'])

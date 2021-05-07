@@ -7,18 +7,42 @@
 <h2>Details:</h2>
 
 <p><img src="{{ pokemon.photo_url }}" width="250px" height="250px"></p>
-<p>name: {{pokemon.name}}</p>
-<p>nick_name: {{pokemon.nick_name}}</p>
-<p>weight: {{pokemon.weight}}</p>
-<p>type: {{pokemon.pokemon_type}}</p>
+<p><strong>Name:</strong> {{pokemon.name}}</p>
+<p><strong>Nick name:</strong> {{pokemon.nick_name}}</p>
+<p><strong>Weight:</strong> {{pokemon.weight}} lb's</p>
+<p><strong>Type:</strong> {{pokemon.pokemon_type}}</p>
 
-<p>moves:</p>
+<p><strong>Moves:</strong> Currently has {{pokemon.moves|length}} moves</p>
 <ul>
 {% for move in pokemon.moves %}
     <li>{{move.name}}</li>
     <ul>
-        <li>Type: {{move.move_type}}</li>
-        <li>Power: {{move.power}}</li>
+        <li><strong>Type: </strong>
+            {% if move.move_type == Type.NORMAL %} <span style='background-color: #aa9;'>{{move.move_type}} </span>
+            {% elif move.move_type == Type.FIRE %} <span style='background-color: #f42;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.WATER %} <span style='background-color: #39f;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.GRASS %} <span style='background-color: #7c5;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.ELECTRIC %} <span style='background-color: #fc3;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.ICE %} <span style='background-color: #6cf;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.FIGHTING %} <span style='background-color: #b54;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.POISION %} <span style='background-color: #a59;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.GROUND %} <span style='background-color: #db5;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.FLYING %} <span style='background-color: #89f;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.PSYCHIC %} <span style='background-color: #f59;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.BUG %} <span style='background-color: #ab2;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.ROCK %} <span style='background-color: #ba6;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.GHOST %} <span style='background-color: #66b;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.DARK %} <span style='background-color: #754;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.DRAGON %} <span style='background-color: #76e;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.STEEL %} <span style='background-color: #aab;'>{{move.move_type}}</span>
+            {% elif move.move_type == Type.FAIRY %} <span style='background-color: #e9e;'>{{move.move_type}}</span>
+
+            {% else %}
+            issue
+            {% endif %}
+
+        </li>
+        <li><strong>Power: </strong>{{move.power}}</li>
     </ul>
 {% endfor %}
 </ul>
