@@ -52,6 +52,21 @@ li.error {
     color: red;
 }
 
+li {
+    margin: 0px 0px 10px 0px;
+}
+
+span {
+    padding: 5px; 
+    border-radius: 7.5px;
+    background-color: #fc3; 
+    color: white;
+    font-weight: 800;
+}
+
+/*************************** 
+*   POKEMON CARD SECTION   *
+***************************/
 .pokemon-card-section{
     /* background-color: pink; */
     display: flex;
@@ -83,12 +98,37 @@ li.error {
     font-size: x-large;
 }
 
-li {
-    margin: 0px 0px 10px 0px;
+/***************************** 
+*   POKEMON DETAIL SECTION   *
+*****************************/
+.pokemon-detail-section {
+    text-align: center;
+    /* background-color: red; */
 }
 
-span {
-    padding: 5px; 
-    border-radius: 7.5px;
-    background-color: #fc3; 
+.pokemon-detail-card {
+    background-color: #F2F2F2;
+    padding: 20px; 
+    border-radius: 10px;    
 }
+
+
+/*******************
+*   MOVES LIST     *
+********************/
+.moves-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.moves-list fieldset {
+    margin: 15px;
+}
+
+.moves-list fieldset p{
+    margin-top: 5px
+}
+
+
