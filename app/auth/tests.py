@@ -6,7 +6,7 @@ from datetime import date
 from app import app, db, bcrypt
 from app.models import *
 
-# python -m unittest app.auth.tests
+# python3 -m unittest app.auth.tests
 #################################################
 # Setup
 #################################################
