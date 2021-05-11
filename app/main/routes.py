@@ -13,20 +13,12 @@ def homepage():
         pokemons = current_user.pokemons                            # only get the pokemon of the logged in user
         return render_template('home.html', all_pokemon=pokemons)
     return render_template('home.html', all_pokemon=[])
-    
-    # all_pokemon = Pokemon.query.all()
-    # return render_template('home.html', all_pokemon=all_pokemon)
 
 
 @main.route('/pokemon/<pokemon_id>', methods=['GET', 'POST'])
 def pokemon_detail(pokemon_id):
     pokemon = Pokemon.query.get(pokemon_id)
     form = MoveForm()
-    # print("\n\nhello")
-    # print(Type.ELECTRIC)
-    # print(type(Type.ELECTRIC))
-    # print(pokemon.moves[0].move_type)
-    # print(type(pokemon.moves[0].move_type))
 
     if form.validate_on_submit():
         pokemon.moves.append(Move(
@@ -65,22 +57,3 @@ def new_pokemon():
 
     return render_template('new_pokemon.html', form=form)
 
-
-# @main.route('/new_move', methods=['GET', 'POST'])
-# @login_required
-# def new_move():
-#     form = MoveForm()
-#     if form.validate_on_submit():
-#         new_move = MoveForm(
-#             name=form.name.data
-#             move_type=form.move_type.data
-#             power=form.power.data
-#         )
-#         new_move.created_by = current_user   # adding flask_login.current_user as creator
-#         db.session.add(new_move)
-#         db.session.commit()
-        
-#         flash('success')
-#         return redirect(url_for('main.pokemon_detail', move_id = new_move.id)) 
-
-#     return render_template('pokemon_detail.html', form=form)
